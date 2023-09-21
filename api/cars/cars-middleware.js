@@ -11,11 +11,20 @@ const checkCarId = async(req, res, next) => {
 }
 
 const checkCarPayload = (req, res, next) => {
-  
-  for (let field in req.body){
-      if(!req.body[field])
-        next({status: 400, message: `${field} is missing`})
-  }
+  const { vin, make, model, mileage } = req.body
+
+  if(!vin)
+    next({status:400, message: 'vin is missing'})
+  if(!make)
+    next({status:400, message: 'make is missing'})
+  if(!model)
+    next({status:400, message: 'model is missing'})
+  if(!mileage)
+    next({status:400, message: 'mileage is missing'})
+  // for (let field in req.body){
+  //     if(!req.body[field])
+  //       next({status: 400, message: `${field} is missing`})
+  // }
   next()
 
 }
